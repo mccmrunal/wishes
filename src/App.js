@@ -1,9 +1,14 @@
 import React from 'react';
+import Header from './components/header';
+import LandingPage from './components/landingPage';
+import { MyProvider } from './context';
 
 const App = () =>{
   return(
     <>
-    <h1>hello from apps</h1>
+    <MyProvider>  <Header/>
+      <LandingPage/></MyProvider>
+    
     </>
   )
 }
