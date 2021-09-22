@@ -5,16 +5,36 @@ const MyContext = createContext();
 class MyProvider extends Component{
     state={
         users:[],
-        wishes:[]
+        wishes:[],
+        page:1,
     }       
 
-    handlerSubmit = () =>{
-        console.log("hello from gandhi...");
-    } 
+ 
+    addWish = (wish) =>{
+        this.setState((prevState)=>({
+            wishes:[...prevState.wishes,wish],page:3
+        }))
+    }
+  
+    changeState = ()=>{
+        this.setState(()=>({
+            page:"2"
+        }))
+    }
+    addUser = (email)=>{
+        this.setState((prevState)=>({
+            users:[...prevState.users,email],page:2
+        }))
+    }
+    goToLanding = () =>(
+        this.setState((prevState)=>({
+            page:1
+        }))
+    )
 
     render(){
         return(
-            <MyContext.Provider value={{Submit:this.handlerSubmit}}>
+            <MyContext.Provider value={{state:this.state,goTolandingPage:this.goToLanding,addEmail:this.addUser,addWishes:this.addWish,changeState:this.changeState}}>
                 {this.props.children}
             </MyContext.Provider>
         )
